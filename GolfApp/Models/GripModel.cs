@@ -8,6 +8,8 @@ namespace GolfApp.Models
         [Key]
         [Required]
         public int gripID { get; set; }
+        public string gripName { get; set; }
+        public string gripModel { get; set; }
         //Build Foreign Key with brand
         public int brandID { get; set; }
         public Brand brand { get; set; }
