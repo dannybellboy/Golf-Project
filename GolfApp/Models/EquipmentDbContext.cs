@@ -10,6 +10,8 @@ namespace GolfApp.Models
 
         }
 
-        public DbSet<Equipment> equipment { get; set; }
+        public DbSet<Shaft> shaft { get; set; }
+
+        
     }
 }

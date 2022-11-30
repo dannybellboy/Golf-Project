@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using GolfApp.Models;
 using GolfApp.Models.ViewModels;
 using System.Text;
+using System.IO;
 
 namespace GolfApp.Controllers
 {
@@ -68,6 +69,31 @@ namespace GolfApp.Controllers
             var x = repo.equipment
                 .Single(x => x.Reference_Handle == referencehandle || referencehandle == null);
             return View(x);
+        }
+
+        public IActionResult AddProduct()
+        {
+            
+            return View();
+
+        }
+        [HttpPost]
+        public ActionResult AddProduct(HttpPostedFileBase postedFile)
+        {
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+            BufferedSingleFileUploadDb entities = new BufferedSingleFileUploadDb();
+            entities.tblFiles.Add(new tblFile
+            {
+                Name = Path.GetFileName(postedFile.FileName),
+                ContentType = postedFile.ContentType,
+                Data = bytes
+            });
+            entities.SaveChanges();
+            return RedirectToAction("AddProduct");
         }
     }
 }
