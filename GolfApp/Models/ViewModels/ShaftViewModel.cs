@@ -3,9 +3,9 @@ using System.Linq;
 
 namespace GolfApp.Models.ViewModels
 {
-    public class EquipmentViewModel
+    public class ShaftViewModel
     {
-        public IQueryable<Equipment> equipment { get; set; }
+        public IQueryable<Shaft> shaft { get; set; }
 
         public PageInfo PageInfo { get; set; }
     }

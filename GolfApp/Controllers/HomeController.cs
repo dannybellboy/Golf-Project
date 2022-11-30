@@ -13,9 +13,9 @@ namespace GolfApp.Controllers
 {
     public class HomeController : Controller
     {
-        private IEquipmentRepository repo { get; set; }
+        private IShaftRepository repo { get; set; }
 
-        public HomeController(IEquipmentRepository temp)
+        public HomeController(IShaftRepository temp)
         {
             repo = temp;
         }
@@ -30,7 +30,7 @@ namespace GolfApp.Controllers
             return View();
         }
 
-        public IActionResult Products(string category, int pageNum = 1)
+        public IActionResult Products(string shaft, int pageNum = 1)
         {
 
             StringBuilder QParam = new StringBuilder();
@@ -41,17 +41,17 @@ namespace GolfApp.Controllers
 
             int pageSize = 28;
 
-            var x = new EquipmentViewModel
+            var x = new ShaftViewModel
             {
-                equipment = repo.equipment
-                .Where(x => x.Category == category || category == null)
+                shaft = repo.shaft
+                .Where(x => x.shaftName == shaft || shaft == null)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
 
                 PageInfo = new PageInfo
                 {
-                    TotalNumEquipment = repo.equipment
-                    .Where(x => x.Category == category || category == null).Count(),
+                    TotalNumEquipment = repo.shaft
+                    .Where(x => x.shaftName == shaft || shaft == null).Count(),
                     EquipmentPerPage = pageSize,
                     CurrentPage = pageNum,
                     UrlParams = QParam.ToString(),
@@ -63,10 +63,10 @@ namespace GolfApp.Controllers
             return View(x);
         }
 
-        public IActionResult Details(string referencehandle)
+        public IActionResult Details(int shaftID)
         {
-            var x = repo.equipment
-                .Single(x => x.Reference_Handle == referencehandle || referencehandle == null);
+            var x = repo.shaft
+                .Where(x => x.shaftID == shaftID);
             return View(x);
         }
     }

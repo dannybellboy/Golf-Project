@@ -29,12 +29,12 @@ namespace GolfApp
 
             services.AddRazorPages();
 
-            services.AddDbContext<EquipmentDbContext>(options =>
+            services.AddDbContext<ShaftDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:EquipmentDbConnection"]);
+                options.UseMySql(Configuration["ConnectionStrings:ShaftDbConnection"]);
             });
 
-            services.AddScoped<IEquipmentRepository, EFEquipmentRepository>();
+            services.AddScoped<IShaftRepository, EFShaftRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
