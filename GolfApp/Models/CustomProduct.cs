@@ -12,7 +12,6 @@ namespace GolfApp.Models
         public int sbmfID { get; set; }
         public ShaftBrandModelFlex shaftbrandmodelflex { get; set; }
         public int buildType { get; set; }
-        public BuildType buildtype { get; set; }
         public int adapterSettings { get; set; }
         public AdapterSettings adaptersettings { get; set; }
         public int gripModel { get; set; }

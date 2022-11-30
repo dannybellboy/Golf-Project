@@ -10,6 +10,11 @@ namespace GolfApp.Models
         public int shaftID { get; set; }
         public string shaftName { get; set; }
         public string length { get; set; }
+        public string imageName { get; set; }
+        //public byte shaftImage { get; set; }
+        public double price { get; set; }
     }
 }
+
+
 
