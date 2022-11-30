@@ -5,7 +5,6 @@ namespace GolfApp.Models
 {
     public class Shaft
     {
-
         [Key]
         [Required]
         public int shaftID { get; set; }
@@ -16,3 +15,6 @@ namespace GolfApp.Models
         public double price { get; set; }
     }
 }
+
+
+
