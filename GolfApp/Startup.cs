@@ -34,11 +34,11 @@ namespace GolfApp
                 options.UseMySql(Configuration["ConnectionStrings:ShaftDbConnection"]);
             });
 
-            services.AddDbContext<AppIdentityDBContext>(options =>
-                options.UseMySql(Configuration["ConnectionStrings:IdentityConnection"]));
+            //services.AddDbContext<AppIdentityDBContext>(options =>
+            //    options.UseMySql(Configuration["ConnectionStrings:IdentityConnection"]));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .addEntityFrameworkStores<AppIdentityDBContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .addEntityFrameworkStores<AppIdentityDBContext>();
             
             services.AddScoped<IShaftRepository, EFShaftRepository>();
         }
