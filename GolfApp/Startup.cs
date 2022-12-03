@@ -31,7 +31,7 @@ namespace GolfApp
 
             services.AddDbContext<EquipmentDbContext>(options =>
             {
-                options.UseMySql(Configuration["ConnectionStrings:EquipmentDbConnection"]);
+                options.UseMySql(Configuration["ConnectionStrings:LibertyDbConnection"]);
             });
 
             services.AddScoped<IEquipmentRepository, EFEquipmentRepository>();
