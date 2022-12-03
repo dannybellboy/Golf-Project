@@ -65,8 +65,12 @@ namespace GolfApp.Controllers
 
         public IActionResult Details(int shaftID)
         {
-            var x = repo.shafts
-                .Where(x => x.shaftID == shaftID);
+            var x = new ShaftViewModel
+            {
+                shaft = repo.shafts
+                .Where(x => x.shaftID == shaftID)
+            };
+
             return View(x);
         }
 
