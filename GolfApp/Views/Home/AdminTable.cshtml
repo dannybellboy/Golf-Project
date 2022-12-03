@@ -1,0 +1,158 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{}
+@model dynamic
+
+
+    
+<div class="containter">
+    <div class="row">
+        <div class="col-7"></div>
+        <div class="col-5">
+            @using (Html.BeginForm())
+            {
+            <p>Search by Name: @Html.TextBox("SearchString")
+            <input type="submit" value="Search" /></p>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10" style="height: 70vh; overflow-y: auto; overflow-x: hidden">
+            <table class="table">
+                @switch (ViewBag.currModel)
+                {
+                    case "shafts":
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Length</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@s.shaftName</td>
+                                    <td>@s.length</td>
+                                    <td>@s.price</td>
+                                    <td>@Html.ActionLink("Edit", "AdminEditShaft", "Home", new { shaftID = s.shaftID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "AdminDeleteShaft", "Home", new { shaftID = s.shaftID }, null)</td>
+                                </tr>
+                            }
+                        </tbody>
+                        break;
+                    case "brands":
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@s.brandName</td>
+                                    <td>@Html.ActionLink("Edit", "AdminEditBrand", "Home", new { brandID = s.brandID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "AdminDeleteBrand", "Home", new { brandID = s.brandID }, null)</td>
+                                    @*<td>Edit</td>
+                            <td>Delete</td>*@
+                                </tr>
+                            }
+                        </tbody>
+                        break;
+                    case "adapter":
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Settings</th>
+                                <th scope="col">Brand</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@s.adapterName</td>
+                                    <td scope="row">@s.adapterSettings</td>
+                                    <td scope="row">@ViewBag.dict[@s.brandID]</td>
+                                    <td>@Html.ActionLink("Edit", "AdminEditAdapterSetting", "Home", new { adapterID = s.adapterID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "AdminDeleteAdapterSetting", "Home", new { adapterID = s.adapterID }, null)</td>
+                                </tr>
+                            }
+                        </tbody>
+                        break;
+                    case "type":
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@s.typeName</td>
+                                    <td>@Html.ActionLink("Edit", "AdminEditBuildType", "Home", new { typeID = s.typeID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "AdminDeleteBuildType", "Home", new { typeID = s.typeID }, null)</td>
+                                    @*<td>Edit</td>
+                            <td>Delete</td>*@
+                                </tr>
+                            }
+                        </tbody>
+                        break;
+                    case "grip":
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Grip</th>
+                                <th scope="col">Brand</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@s.gripName</td>
+                                    <td scope="row">@s.gripModel</td>
+                                    <td scope="row">@ViewBag.dict[@s.brandID]</td>
+                                    <td>@Html.ActionLink("Edit", "AdminEditGripModel", "Home", new { gripID = s.gripID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "AdminDeleteGripModel", "Home", new { gripID = s.gripID }, null)</td>
+                                </tr>
+                            }
+                        </tbody>
+                        break;
+                    case "modelFlex":
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var s in Model)
+                            {
+                                <tr>
+                                    <td scope="row">@s.modelFlexName</td>
+                                    <td>@Html.ActionLink("Edit", "AdminEditModelFlex", "Home", new { modelFlexID = s.modelFlexID }, null)</td>
+                                    <td>@Html.ActionLink("Delete", "AdminDeleteModelFlex", "Home", new { modelFlexID = s.modelFlexID }, null)</td>
+                                    @*<td>Edit</td>
+                            <td>Delete</td>*@
+                                </tr>
+                            }
+                        </tbody>
+                        break;
+                }
+
+            </table>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+</div>

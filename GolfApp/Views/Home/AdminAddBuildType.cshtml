@@ -1,0 +1,36 @@
+﻿@*
+
+
+*@
+@{
+}
+@model BuildType
+<div class="row" style="height:10vh;"></div>
+<div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-10" style="height: 70vh; overflow-y: auto; overflow-x: hidden">
+        <form method="post">
+            <h4 class="form-group col-12">Add @ViewBag.currModel</h4>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="typeID" />
+            <div class="form-group col-12">
+                <label asp-for="typeName">Name:</label>
+                <input asp-for="typeName" class="form-control" />
+            </div>
+            <div class="row" style="height:5vh;"></div>
+            <div class="float-end form-group col-12">
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </form>
+    </div>
+    <div class="col-1">
+    </div>
+</div>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
