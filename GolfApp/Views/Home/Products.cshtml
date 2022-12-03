@@ -1,14 +1,14 @@
 ﻿@{
     ViewData["Title"] = "All Products";
 }
-@model EquipmentViewModel
+@model ShaftViewModel
 <!-- Section-->
 <h1></h1>
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 
-            @foreach (Equipment e in Model.equipment)
+            @foreach (Shaft s in Model.shaft)
             {
                 <div class="col mb-5">
                     <div class="card h-100">
@@ -18,14 +18,14 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <!-- Product name-->
-                                <h5 class="fw-bolder">@e.Item_Name</h5>
+                                <h5 class="fw-bolder">@s.shaftName</h5>
                                 <!-- Product price-->
-                                $@e.Price
+                                $@s.price
                             </div>
                         </div>
                         <!-- Product actions-->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-controller="Home" asp-action="Details" asp-route-referencehandle="@e.Reference_Handle">View product</a></div>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-controller="Home" asp-action="Details" asp-route-shaftID="@s.shaftID">View product</a></div>
                         </div>
                     </div>
                 </div>

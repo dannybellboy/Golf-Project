@@ -6,6 +6,7 @@ using GolfApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,12 +30,22 @@ namespace GolfApp
 
             services.AddRazorPages();
 
-            services.AddDbContext<EquipmentDbContext>(options =>
+            services.AddDbContext<ShaftDbContext>(options =>
             {
+<<<<<<< HEAD
                 options.UseMySql(Configuration["ConnectionStrings:LibertyDbConnection"]);
+=======
+                options.UseMySql(Configuration["ConnectionStrings:ShaftDbConnection"]);
+>>>>>>> c26794e98f3a8255a520aa136b7f8b5eaf998941
             });
 
-            services.AddScoped<IEquipmentRepository, EFEquipmentRepository>();
+            services.AddDbContext<AppIdentityDBContext>(options =>
+                options.UseMySql(Configuration["ConnectionStrings:IdentityConnection"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDBContext>();
+            
+            services.AddScoped<IShaftRepository, EFShaftRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +66,7 @@ namespace GolfApp
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -72,6 +84,8 @@ namespace GolfApp
                 endpoints.MapRazorPages();
                 endpoints.MapDefaultControllerRoute();
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

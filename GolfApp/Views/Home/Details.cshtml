@@ -1,6 +1,9 @@
 ﻿@{
 }
-@model Equipment
+@model ShaftViewModel
 
-<h1>@Model.Item_Name</h1>
-<h2>@Model.Price</h2>
+@foreach (Shaft s in Model.shaft)
+{
+    <h1>@s.shaftName</h1>
+    <h2>@s.price</h2>
+}

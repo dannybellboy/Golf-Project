@@ -1,0 +1,45 @@
+﻿@*
+      using System;
+    using System.ComponentModel.DataAnnotations;
+
+    namespace GolfApp.Models
+    {
+        public class Brand
+        {
+            [Key]
+            [Required]
+            public int brandID { get; set; }
+            public string brandName { get; set; }
+        }
+    }
+
+
+*@
+@{
+}
+@model Brand
+<div class="row" style="height:10vh;"></div>
+<div class="row">
+    <div class="col-1">
+    </div>
+    <div class="col-10" style="height: 70vh; overflow-y: auto; overflow-x: hidden">
+        <form method="post">
+            <h4 class="form-group col-12">Add @ViewBag.currModel</h4>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input type="hidden" asp-for="brandID" />
+            <div class="form-group col-12">
+                <label asp-for="brandName">Name:</label>
+                <input asp-for="brandName" class="form-control" />
+            </div>
+            <div class="row" style="height:5vh;"></div>
+            <div class="float-end form-group col-12">
+                <input class="btn btn-primary" type="submit" value="Add" />
+            </div>
+        </form>
+    </div>
+    <div class="col-1">
+    </div>
+</div>
+
+

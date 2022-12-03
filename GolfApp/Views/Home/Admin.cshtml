@@ -1,0 +1,65 @@
+﻿@page "Home/Admin"
+
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize]
+
+<div class="container">
+    <div class="row">
+        <div class="col-1"><p>Admin</p>
+        </div>
+        </div>
+    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-10">
+            <table class="table">
+                <tbody>
+
+                    <tr>
+                        <td>Brands</td>
+                        <td>@ViewBag.BrandCount</td>
+                        <td><a asp-controller="Home" asp-action="AdminAddBrand">Add</a></td>
+                        <td>@Html.ActionLink("Edit", "AdminTable", "Home", new { model = "brand", searchString = "" }, null)</td>
+                    </tr>
+                    <tr>
+                        <td>Build Types</td>
+                        <td>@ViewBag.BuildTypeCount</td>
+                        <td><a asp-controller="Home" asp-action="AdminAddBuildType">Add</a></td>
+                        <td>@Html.ActionLink("Edit", "AdminTable", "Home", new { model = "type", searchString = "" }, null)</td>
+                    </tr>
+                    <tr>
+                        <td>Grip Models</td>
+                        <td>@ViewBag.GripModelCount</td>
+                        <td><a asp-controller="Home" asp-action="AdminAddGripModel">Add</a></td>
+                        <td>@Html.ActionLink("Edit", "AdminTable", "Home", new { model = "grip", searchString = "" }, null)</td>
+                    </tr>
+                    <tr>
+                        <td>Model Flex</td>
+                        <td>@ViewBag.ModelFlexCount</td>
+                        <td><a asp-controller="Home" asp-action="AdminAddModelFlex">Add</a></td>
+                        <td>@Html.ActionLink("Edit", "AdminTable", "Home", new { model = "modelFlex", searchString = "" }, null)</td>
+                    </tr>
+                    <tr>
+                        <td>Adapter Settings</td>
+                        <td>@ViewBag.AdapterCount</td>
+                        <td><a asp-controller="Home" asp-action="AdminAddAdapterSetting">Add</a></td>
+                        <td>@Html.ActionLink("Edit", "AdminTable", "Home", new { model = "adapter", searchString = "" }, null)</td>
+                    </tr>
+                    <tr>
+                        <td>Shafts</td>
+                        <td>@ViewBag.ShaftCount</td>
+                        <td><a asp-controller="Home" asp-action="AdminAddShaft">Add</a></td>
+                        <td>@Html.ActionLink("Edit", "AdminTable", "Home", new { model = "shaft", searchString = "" }, null)</td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+        <div class="col-1">
+        </div>
+    </div>
+</div>
