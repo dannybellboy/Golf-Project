@@ -6,6 +6,7 @@ using GolfApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +39,7 @@ namespace GolfApp
                 options.UseMySql(Configuration["ConnectionStrings:IdentityConnection"]));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
-                .addEntityFrameworkStores<AppIdentityDBContext>();
+                .AddEntityFrameworkStores<AppIdentityDBContext>();
             
             services.AddScoped<IShaftRepository, EFShaftRepository>();
         }
@@ -79,6 +80,8 @@ namespace GolfApp
                 endpoints.MapRazorPages();
                 endpoints.MapDefaultControllerRoute();
             });
+
+            IdentitySeedData.EnsurePopulated(app);
         }
     }
 }

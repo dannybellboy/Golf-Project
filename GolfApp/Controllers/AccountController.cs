@@ -41,7 +41,7 @@ namespace GolfApp.Controllers
 
                     if ((await signInManager.PasswordSignInAsync(user, loginModel.Password, false, false)).Succeeded)
                     {
-                        return Redirect(loginModel?.ReturnUrl ?? "/Admin");
+                        return Redirect(loginModel?.ReturnUrl ?? "/Home/Admin");
                     }
 ;                }
 
