@@ -1,0 +1,13 @@
+﻿@{
+}
+
+@model List<string>
+
+    <select>
+        <option value="" disabled selected hidden>Choose Option</option>
+        @foreach (string x in Model)
+        {
+            <option value="@x">@x</option>
+        }
+
+    </select>
