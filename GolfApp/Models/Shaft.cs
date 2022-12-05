@@ -14,7 +14,7 @@ namespace GolfApp.Models
         public string imageName { get; set; }
         [Display(Name="Choose the image for the product")]
         public IFormFile shaftImage { get; set; }
-        
+        public string imagePath { get; set; }
         public double price { get; set; }
 
     }

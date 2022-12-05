@@ -234,15 +234,18 @@ namespace GolfApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminAddShaftAsync(Shaft x)
         {
+            string folder = "";
+
             if (x.shaftImage != null)
             {
-                string folder = "shafts/images/";
-                folder += x.imageName + Guid.NewGuid().ToString();
+                folder = "shafts/images/";
+                folder += Guid.NewGuid().ToString() + "_" + x.shaftImage.FileName;
                 string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
 
                 await x.shaftImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create)); ;
 
             }
+            x.imagePath = folder ;
             x.shaftID = repo.GetMaxID("shaft") + 1;
             repo.CreateShaft(x);
             return RedirectToAction("Admin");
