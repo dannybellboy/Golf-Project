@@ -32,11 +32,8 @@ namespace GolfApp
 
             services.AddDbContext<ShaftDbContext>(options =>
             {
-<<<<<<< HEAD
-                options.UseMySql(Configuration["ConnectionStrings:LibertyDbConnection"]);
-=======
+                options.UseMySql("server=localhost;port=3306;database=gol;user=root;password=Ea+ my du$t88");   
                 options.UseMySql(Configuration["ConnectionStrings:ShaftDbConnection"]);
->>>>>>> c26794e98f3a8255a520aa136b7f8b5eaf998941
             });
 
             services.AddDbContext<AppIdentityDBContext>(options =>

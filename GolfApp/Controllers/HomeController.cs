@@ -9,16 +9,19 @@ using GolfApp.Models;
 using GolfApp.Models.ViewModels;
 using System.Text;
 using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GolfApp.Controllers
 {
     public class HomeController : Controller
     {
         private IShaftRepository repo { get; set; }
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IShaftRepository temp)
+        public HomeController(IShaftRepository temp, IWebHostEnvironment webHostEnvironment)
         {
             repo = temp;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -75,15 +78,14 @@ namespace GolfApp.Controllers
             return View(x);
         }
 
-<<<<<<< HEAD
         public IActionResult AddProduct()
         {
             
             return View();
 
         }
-        [HttpPost]
-        public ActionResult AddProduct(HttpPostedFileBase postedFile)
+        //[HttpPost]
+        /*public ActionResult AddProduct(HttpPostedFileBase postedFile)
         {
             byte[] bytes;
             using (BinaryReader br = new BinaryReader(postedFile.InputStream))
@@ -99,8 +101,7 @@ namespace GolfApp.Controllers
             });
             entities.SaveChanges();
             return RedirectToAction("AddProduct");
-        }
-=======
+        }*/
         public IActionResult Admin()
         {
             ViewBag.ShaftCount = repo.shafts.Count();
@@ -231,8 +232,17 @@ namespace GolfApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult AdminAddShaft(Shaft x)
+        public async Task<IActionResult> AdminAddShaftAsync(Shaft x)
         {
+            if (x.shaftImage != null)
+            {
+                string folder = "shafts/images/";
+                folder += x.imageName + Guid.NewGuid().ToString();
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                await x.shaftImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create)); ;
+
+            }
             x.shaftID = repo.GetMaxID("shaft") + 1;
             repo.CreateShaft(x);
             return RedirectToAction("Admin");
@@ -501,6 +511,6 @@ namespace GolfApp.Controllers
         }
 
 
->>>>>>> c26794e98f3a8255a520aa136b7f8b5eaf998941
+
     }
 }

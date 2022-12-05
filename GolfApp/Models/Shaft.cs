@@ -12,12 +12,11 @@ namespace GolfApp.Models
         public string shaftName { get; set; }
         public string length { get; set; }
         public string imageName { get; set; }
-<<<<<<< HEAD
-        public byte[] shaftImage { get; set; }
-=======
-        //public byte shaftImage { get; set; }
+        [Display(Name="Choose the image for the product")]
+        public IFormFile shaftImage { get; set; }
+        
         public double price { get; set; }
->>>>>>> c26794e98f3a8255a520aa136b7f8b5eaf998941
+
     }
 }
 

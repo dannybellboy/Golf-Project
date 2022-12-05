@@ -12,6 +12,7 @@
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Views\Account\" />
+    <Folder Include="wwwroot\shafts\images\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore" />
