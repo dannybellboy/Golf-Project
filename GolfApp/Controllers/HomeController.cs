@@ -72,6 +72,7 @@ namespace GolfApp.Controllers
 
         public IActionResult Admin()
         {
+            ViewData["Title"] = "Admin";
             ViewBag.ShaftCount = repo.shafts.Count();
             ViewBag.BrandCount = repo.brands.Count();
             ViewBag.AdapterCount = repo.adapterSettings.Count();
@@ -83,6 +84,7 @@ namespace GolfApp.Controllers
 
         public IActionResult AdminTable(string model, string searchString)
         {
+            ViewData["Title"] = "AdminTable";
             object x = repo.shafts.ToList();
             Dictionary<int, string> dic = new Dictionary<int, string>();
             switch (model)
@@ -194,6 +196,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddShaft()
         {
+            ViewData["Title"] = "AdminAddShaft";
             ViewBag.currModel = "Shaft";
 
             return View();
@@ -210,6 +213,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddBrand()
         {
+            ViewData["Title"] = "AdminAddBrand";
             ViewBag.currModel = "Brand";
             return View();
         }
@@ -225,6 +229,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddAdapterSetting()
         {
+            ViewData["Title"] = "AdminAddAdapterSetting";
             ViewBag.currModel = "Adapter Settings";
             ViewBag.Brands = repo.brands.ToList();
             return View();
@@ -241,6 +246,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddBuildType()
         {
+            ViewData["Title"] = "AdminAddBuildType";
             ViewBag.currModel = "Build Type";
             return View();
         }
@@ -256,6 +262,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddGripModel()
         {
+            ViewData["Title"] = "AdminAddGripModel";
             ViewBag.currModel = "Grip Model";
             ViewBag.Brands = repo.brands.ToList();
             return View();
@@ -272,6 +279,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddModelFlex()
         {
+            ViewData["Title"] = "AdminAddModelFlex";
             ViewBag.currModel = "Model Flex";
             return View();
         }
@@ -294,6 +302,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditShaft(int shaftID)
         {
+            ViewData["Title"] = "AdminEditShaft";
 
             var x = repo.shafts.Where(x => x.shaftID == shaftID).Single();
             x.shaftID = shaftID;
@@ -316,6 +325,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditBrand(int brandID)
         {
+            ViewData["Title"] = "AdminEditBrand";
+
 
             var x = repo.brands.Where(x => x.brandID == brandID).Single();
             x.brandID = brandID;
@@ -337,6 +348,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditAdapterSetting(int adapterID)
         {
+            ViewData["Title"] = "AdminEditAdapterSetting";
+
 
             var x = repo.adapterSettings.Where(x => x.adapterID == adapterID).Single();
             x.adapterID = adapterID;
@@ -360,6 +373,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditBuildType(int typeID)
         {
+            ViewData["Title"] = "AdminEditBuildType";
+
 
             var x = repo.buildTypes.Where(x => x.typeID == typeID).Single();
             x.typeID = typeID;
@@ -381,6 +396,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditGripModel(int gripID)
         {
+            ViewData["Title"] = "AdminEditGripModel";
+
 
             var x = repo.gripModels.Where(x => x.gripID == gripID).Single();
             x.gripID = gripID;
@@ -405,6 +422,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditModelFlex(int modelFlexID)
         {
+
+            ViewData["Title"] = "AdminEditModelFlex";
 
             var x = repo.modelFlexes.Where(x => x.modelFlexID == modelFlexID).Single();
             x.modelFlexID = modelFlexID;
