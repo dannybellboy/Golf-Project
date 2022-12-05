@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace GolfApp.Models
@@ -11,8 +12,11 @@ namespace GolfApp.Models
         public string shaftName { get; set; }
         public string length { get; set; }
         public string imageName { get; set; }
-        //public byte shaftImage { get; set; }
+        [Display(Name="Choose the image for the product")]
+        public IFormFile shaftImage { get; set; }
+        
         public double price { get; set; }
+
     }
 }
 
