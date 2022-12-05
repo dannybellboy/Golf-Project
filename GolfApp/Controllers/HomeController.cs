@@ -8,16 +8,20 @@ using Microsoft.Extensions.Logging;
 using GolfApp.Models;
 using GolfApp.Models.ViewModels;
 using System.Text;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace GolfApp.Controllers
 {
     public class HomeController : Controller
     {
         private IShaftRepository repo { get; set; }
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IShaftRepository temp)
+        public HomeController(IShaftRepository temp, IWebHostEnvironment webHostEnvironment)
         {
             repo = temp;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -74,8 +78,33 @@ namespace GolfApp.Controllers
             return View(x);
         }
 
+        public IActionResult AddProduct()
+        {
+            
+            return View();
+
+        }
+        //[HttpPost]
+        /*public ActionResult AddProduct(HttpPostedFileBase postedFile)
+        {
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+            BufferedSingleFileUploadDb entities = new BufferedSingleFileUploadDb();
+            entities.tblFiles.Add(new tblFile
+            {
+                Name = Path.GetFileName(postedFile.FileName),
+                ContentType = postedFile.ContentType,
+                Data = bytes
+            });
+            entities.SaveChanges();
+            return RedirectToAction("AddProduct");
+        }*/
         public IActionResult Admin()
         {
+            ViewData["Title"] = "Admin";
             ViewBag.ShaftCount = repo.shafts.Count();
             ViewBag.BrandCount = repo.brands.Count();
             ViewBag.AdapterCount = repo.adapterSettings.Count();
@@ -87,6 +116,7 @@ namespace GolfApp.Controllers
 
         public IActionResult AdminTable(string model, string searchString)
         {
+            ViewData["Title"] = "AdminTable";
             object x = repo.shafts.ToList();
             Dictionary<int, string> dic = new Dictionary<int, string>();
             switch (model)
@@ -198,14 +228,27 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddShaft()
         {
+            ViewData["Title"] = "AdminAddShaft";
             ViewBag.currModel = "Shaft";
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult AdminAddShaft(Shaft x)
+        public async Task<IActionResult> AdminAddShaftAsync(Shaft x)
         {
+            string folder = "";
+
+            if (x.shaftImage != null)
+            {
+                folder = "shafts/images/";
+                folder += Guid.NewGuid().ToString() + "_" + x.shaftImage.FileName;
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+
+                await x.shaftImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create)); ;
+
+            }
+            x.imagePath = folder ;
             x.shaftID = repo.GetMaxID("shaft") + 1;
             repo.CreateShaft(x);
             return RedirectToAction("Admin");
@@ -214,6 +257,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddBrand()
         {
+            ViewData["Title"] = "AdminAddBrand";
             ViewBag.currModel = "Brand";
             return View();
         }
@@ -229,6 +273,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddAdapterSetting()
         {
+            ViewData["Title"] = "AdminAddAdapterSetting";
             ViewBag.currModel = "Adapter Settings";
             ViewBag.Brands = repo.brands.ToList();
             return View();
@@ -245,6 +290,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddBuildType()
         {
+            ViewData["Title"] = "AdminAddBuildType";
             ViewBag.currModel = "Build Type";
             return View();
         }
@@ -260,6 +306,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddGripModel()
         {
+            ViewData["Title"] = "AdminAddGripModel";
             ViewBag.currModel = "Grip Model";
             ViewBag.Brands = repo.brands.ToList();
             return View();
@@ -276,6 +323,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddModelFlex()
         {
+            ViewData["Title"] = "AdminAddModelFlex";
             ViewBag.currModel = "Model Flex";
             return View();
         }
@@ -298,6 +346,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditShaft(int shaftID)
         {
+            ViewData["Title"] = "AdminEditShaft";
 
             var x = repo.shafts.Where(x => x.shaftID == shaftID).Single();
             x.shaftID = shaftID;
@@ -320,6 +369,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditBrand(int brandID)
         {
+            ViewData["Title"] = "AdminEditBrand";
+
 
             var x = repo.brands.Where(x => x.brandID == brandID).Single();
             x.brandID = brandID;
@@ -341,6 +392,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditAdapterSetting(int adapterID)
         {
+            ViewData["Title"] = "AdminEditAdapterSetting";
+
 
             var x = repo.adapterSettings.Where(x => x.adapterID == adapterID).Single();
             x.adapterID = adapterID;
@@ -364,6 +417,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditBuildType(int typeID)
         {
+            ViewData["Title"] = "AdminEditBuildType";
+
 
             var x = repo.buildTypes.Where(x => x.typeID == typeID).Single();
             x.typeID = typeID;
@@ -385,6 +440,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditGripModel(int gripID)
         {
+            ViewData["Title"] = "AdminEditGripModel";
+
 
             var x = repo.gripModels.Where(x => x.gripID == gripID).Single();
             x.gripID = gripID;
@@ -409,6 +466,8 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminEditModelFlex(int modelFlexID)
         {
+
+            ViewData["Title"] = "AdminEditModelFlex";
 
             var x = repo.modelFlexes.Where(x => x.modelFlexID == modelFlexID).Single();
             x.modelFlexID = modelFlexID;
@@ -472,6 +531,7 @@ namespace GolfApp.Controllers
             repo.DeleteModelFlex(x);
             return RedirectToAction("AdminTable", new { model = "modelFlex", searchString = "" });
         }
+
 
 
     }

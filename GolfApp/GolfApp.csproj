@@ -12,9 +12,13 @@
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Views\Account\" />
+<<<<<<< HEAD
     <Folder Include="Components\" />
     <Folder Include="Views\Shared\Components\" />
     <Folder Include="Views\Shared\Components\BuildTypes\" />
+=======
+    <Folder Include="wwwroot\shafts\images\" />
+>>>>>>> origin/main
   </ItemGroup>
   <ItemGroup>
     <None Remove="Microsoft.EntityFrameworkCore" />
