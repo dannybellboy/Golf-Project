@@ -69,6 +69,10 @@ namespace GolfApp.Controllers
 
         public IActionResult Details(int shaftID)
         {
+            ViewBag.BuildTypes = repo.buildTypes.ToList();
+            ViewBag.AdapterSettings = repo.adapterSettings.ToList();
+            ViewBag.ModelFlex = repo.modelFlexes.ToList();
+
             var x = new ShaftViewModel
             {
                 shaft = repo.shafts
@@ -228,7 +232,7 @@ namespace GolfApp.Controllers
         [HttpGet]
         public IActionResult AdminAddShaft()
         {
-            ViewData["Title"] = "AdminAddShaft";
+            ViewData["Title"] = "Add a Shaft";
             ViewBag.currModel = "Shaft";
 
             return View();
