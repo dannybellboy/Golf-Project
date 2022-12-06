@@ -1,10 +1,10 @@
-﻿using System;
+﻿using GolfApp.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using GolfApp.Models.ViewModels;
+using System;
 
 namespace GolfApp.Infrastructure
 {
@@ -90,7 +90,7 @@ namespace GolfApp.Infrastructure
                 TagBuilder labelDiv;
                 labelDiv = new TagBuilder("div");
                 labelDiv.AddCssClass(PageClass);
-                labelDiv.InnerHtml.Append($"Showing {PageBlah.CurrentPage} of { PageBlah.TotalPages}");
+                labelDiv.InnerHtml.Append($"Showing {PageBlah.CurrentPage} of {PageBlah.TotalPages}");
                 final.InnerHtml.AppendHtml(labelDiv);
                 TagBuilder linkDiv = new TagBuilder("div");
                 linkDiv.InnerHtml.AppendHtml(GeneratePageLinks("First", 1));

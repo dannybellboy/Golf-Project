@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GolfApp.Models;
+﻿using GolfApp.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -32,8 +27,8 @@ namespace GolfApp
 
             services.AddDbContext<ShaftDbContext>(options =>
             {
-                options.UseMySql("server=localhost;port=3306;database=gol;user=root;password=Ea+ my du$t88");   
-                options.UseMySql(Configuration["ConnectionStrings:ShaftDbConnection"]);
+                options.UseMySql("server=localhost;port=3306;database=gol;user=root;password=Ea+ my du$t88");
+                //options.UseMySql(Configuration["ConnectionStrings:ShaftDbConnection"]);
             });
 
             services.AddDbContext<AppIdentityDBContext>(options =>
@@ -41,7 +36,7 @@ namespace GolfApp
 
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppIdentityDBContext>();
-            
+
             services.AddScoped<IShaftRepository, EFShaftRepository>();
         }
 

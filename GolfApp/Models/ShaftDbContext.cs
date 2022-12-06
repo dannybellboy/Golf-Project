@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace GolfApp.Models
 {
@@ -23,5 +22,5 @@ namespace GolfApp.Models
             modelBuilder.Entity<Shaft>().Ignore(o => o.shaftImage);
         }
     }
-    
+
 }

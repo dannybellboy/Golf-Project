@@ -1,11 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
+﻿using System.Linq;
 
 namespace GolfApp.Models
 {
     public class EFShaftRepository : IShaftRepository
-    { 
+    {
         private ShaftDbContext _context { get; set; }
 
         public EFShaftRepository(ShaftDbContext temp)
@@ -21,9 +19,9 @@ namespace GolfApp.Models
         public IQueryable<ModelFlex> modelFlexes => _context.modelFlex;
 
         public int GetMaxID(string x)
-        { 
+        {
             var maxID = 0;
-        
+
             try
             {
                 switch (x)
@@ -50,7 +48,7 @@ namespace GolfApp.Models
             }
             catch
             {
-                
+
             }
 
             return maxID;
@@ -92,7 +90,7 @@ namespace GolfApp.Models
         }
 
         public void SaveShaft(Shaft s)
-        { 
+        {
             _context.Update(s);
             _context.SaveChanges();
         }
