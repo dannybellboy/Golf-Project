@@ -1,0 +1,13 @@
+﻿@{
+}
+
+@model IQueryable<BuildType>
+
+    <select>
+        <option value="" disabled selected hidden>Choose Option</option>
+        @foreach (BuildType x in Model)
+        {
+            <option value="@x.typeName">@x.typeName</option>
+        }
+
+    </select>
