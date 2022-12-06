@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using GolfApp.Models;
+﻿using GolfApp.Models;
 using GolfApp.Models.ViewModels;
-using System.Text;
-using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace GolfApp.Controllers
 {
@@ -80,7 +78,7 @@ namespace GolfApp.Controllers
 
         public IActionResult AddProduct()
         {
-            
+
             return View();
 
         }
@@ -126,7 +124,8 @@ namespace GolfApp.Controllers
                     if (!String.IsNullOrEmpty(searchString))
                     {
                         x = repo.shafts.Where(s => s.shaftName.Contains(searchString)).ToList();
-                    } else
+                    }
+                    else
                     {
                         x = repo.shafts.ToList();
                     }
@@ -152,14 +151,15 @@ namespace GolfApp.Controllers
                     {
                         x = repo.adapterSettings.ToList();
                     }
-                    List<AdapterSettings> adapters = (List <AdapterSettings>) x;
+                    List<AdapterSettings> adapters = (List<AdapterSettings>)x;
                     foreach (var adapter in adapters)
                     {
                         Brand b = repo.brands.Single(b => b.brandID == adapter.brandID);
                         try
                         {
                             dic.Add(adapter.brandID, b.brandName);
-                        } catch
+                        }
+                        catch
                         {
 
                         }
@@ -248,7 +248,7 @@ namespace GolfApp.Controllers
                 await x.shaftImage.CopyToAsync(new FileStream(serverFolder, FileMode.Create)); ;
 
             }
-            x.imagePath = folder ;
+            x.imagePath = folder;
             x.shaftID = repo.GetMaxID("shaft") + 1;
             repo.CreateShaft(x);
             return RedirectToAction("Admin");
@@ -361,9 +361,9 @@ namespace GolfApp.Controllers
         public IActionResult AdminEditShaft(Shaft s)
         {
 
-                repo.SaveShaft(s);
-                return RedirectToAction("AdminTable", new {model = "shaft", searchString = ""});
- 
+            repo.SaveShaft(s);
+            return RedirectToAction("AdminTable", new { model = "shaft", searchString = "" });
+
         }
 
         [HttpGet]
@@ -504,7 +504,7 @@ namespace GolfApp.Controllers
             return RedirectToAction("AdminTable", new { model = "brand", searchString = "" });
         }
 
-         public IActionResult AdminDeleteAdapterSetting(int adapterID)
+        public IActionResult AdminDeleteAdapterSetting(int adapterID)
         {
             var x = repo.adapterSettings.Where(x => x.adapterID == adapterID).Single();
             repo.DeleteAdapterSettings(x);

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace GolfApp.Models
 {
@@ -13,7 +12,7 @@ namespace GolfApp.Models
         //Build Foreign Key with brand
         public int brandID { get; set; }
         public Brand brand { get; set; }
-        
+
     }
 }
 

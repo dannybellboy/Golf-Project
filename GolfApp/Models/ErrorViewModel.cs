@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GolfApp.Models
+﻿namespace GolfApp.Models
 {
     public class ErrorViewModel
     {

@@ -8,7 +8,7 @@ namespace GolfApp.Models
         [Key]
         [Required]
         public string shaftBuildType { get; set; }
-       
+
         //Build Foreign Keys with shaft and type
         public int shaftID { get; set; }
         public Shaft shaft { get; set; }

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System.Linq;
 
 namespace GolfApp.Models
 {
@@ -12,7 +11,7 @@ namespace GolfApp.Models
         private const string adminUser = "Admin";
         private const string adminPassword = "GolfAppAdminPassword2022!";
 
-        public static async void EnsurePopulated (IApplicationBuilder app)
+        public static async void EnsurePopulated(IApplicationBuilder app)
         {
             AppIdentityDBContext context = app.ApplicationServices
                 .CreateScope().ServiceProvider

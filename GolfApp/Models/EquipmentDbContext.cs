@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace GolfApp.Models
 {
@@ -12,6 +11,6 @@ namespace GolfApp.Models
 
         public DbSet<Shaft> shaft { get; set; }
 
-        
+
     }
 }
