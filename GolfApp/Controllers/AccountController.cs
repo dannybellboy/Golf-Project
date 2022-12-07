@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GolfApp.Models.ViewModels;
+﻿using GolfApp.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -29,13 +26,13 @@ namespace GolfApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login (LoginModel loginModel)
+        public async Task<IActionResult> Login(LoginModel loginModel)
         {
             if (ModelState.IsValid)
             {
                 IdentityUser user = await userManager.FindByNameAsync(loginModel.Username);
 
-                if ( user != null)
+                if (user != null)
                 {
                     await signInManager.SignOutAsync();
 
@@ -43,13 +40,15 @@ namespace GolfApp.Controllers
                     {
                         return Redirect(loginModel?.ReturnUrl ?? "/Home/Admin");
                     }
-;                }
+;
+                }
 
-                
+
             }
             ModelState.AddModelError("", "Invalid Name or Password");
             return View(loginModel);
         }
+
 
         public async Task<RedirectResult> Logout (string returnUrl = "/")
         {

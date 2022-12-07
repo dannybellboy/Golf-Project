@@ -11,7 +11,7 @@
 }
 @model Shaft
     <p>@ViewBag.ID</p>
-        <form method="post" enctype="multipart/form-data" class="row g-3">
+        <form method="post" enctype="multipart/form-data" class="row g-3" style="padding-left:5rem; padding-right:5rem; padding-bottom:5rem">
             <h4 class="form-group col-12">Add @ViewBag.currModel</h4>
 
             <div asp-validation-summary="All" class="text-danger"></div>
@@ -30,10 +30,9 @@
                 <input asp-for="imageName" class="form-control" />
             </div>*@
             <div class="form-group col-md-4">
-                <label asp-for="shaftImage">Price: </label>
+                <label asp-for="shaftImage">Choose File: </label>
                 <div>
                     <input asp-for="shaftImage" type="file" class="custom-file-input" id="customFile" />
-                    <label class="custom-file-label" asp>Choose File</label>
                 </div>
                 
             </div>
